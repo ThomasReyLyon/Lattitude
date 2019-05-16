@@ -1,0 +1,66 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    {% if clientEmail is not empty %}
+<div class="container-fuild">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="#">Cart</a></li>
+            <li class="breadcrumb-item"><a href="/purchase/login">Login</a></li>
+            <li class="breadcrumb-item">Payment</li>
+            <li class="breadcrumb-item active-purchase"><a href="#">confirmation</a></li>
+        </ol>
+    </nav>
+
+    <h1>Level 1 Completed!</h1>
+    <p>Your order is confirmed!</p>
+
+    <p>You've purchased the following games :<p>
+
+        <div class="row justify-content-start">
+            <div class="col-6 offset-1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Game(s)</th>
+                        <th scope="col">SteamKey</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for game in purchasedGames.article  %}
+                        <tr>
+                            <th scope="row">{{ game }}</th>
+                            <td>{{ purchasedGames.key[loop.index-1] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card col-3 offset-1">
+                <div class="card-header">
+                    <p>Download your game</p>
+                </div>
+                <div class="card-body">
+                    <p>Go to your steam page : <a href="https://store.steampowered.com"><i class="fab fa-steam"></i></a> </p>
+
+                    <p>Head back to the home Page: <a href="/home/index" class="">Click here</a></p>
+
+                    <p>Want to take a look at your account? <a href="/User/UserLogin">Click here</a></p>
+
+                </div>
+            </div>
+    </div>
+
+    <p>Amount charged : {{ total }} EUR</p>
+
+    <p>An email with all details was sent to the following address : {{ clientEmail }}</p>
+    <p>Enjoy playing</p>
+    <a href="/home/deconnect">Back to home page</a>
+    {% endif %}
+    {% endblock %}
+
+    {% block javascript %}
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+
+ {% block content %}
+    <div class="container">
+      <div class="row pl-3">
+          <div class="col-6">
+          <h1 class="p-3 mb-2 bg-info text-white">ContactUs </h1>
+          
+          <p  class="text-info">Le formulaire ci-dessous vous permettra de nous contacter!</p>
+          </div>
+       </div>
+  
+        <div class="container">
+          <form method="POST">
+                <div class="col-md-4 mb-3">
+                  <label for="validationServer01" class="text-danger">Firstname</label>
+                  <input name="firstname"type="text" class="form-control" id="validationServer01" placeholder="Firstname" value="" required>
+                  <div class="valid-feedback">
+                    {{errors.firstname}}
+                  </div>
+                </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationServer02" class="text-danger">Lastname</label>
+                <input name="lastname"type="text" class="form-control " id="validationServer02" placeholder="Lastname" value="" required>
+                <div class="valid-feedback">
+                    {{errors.lastname}}
+                </div>
+              </div>
+           
+              <div class="col-md-4 mb-3">
+                <label for="validationServerUsername" class="text-danger">@Username</label>
+                  <input name="username"type="text" class="form-control " id="validationServerUsername" placeholder="@Username" aria-describedby="inputGroupPrepend3" required>
+                  <div class="invalid-feedback">
+                    {{errors.username}}
+                </div>
+              </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="validationServer03" class="text-danger">City</label>
+                  <input name="city"type="text" class="form-control " id="validationServer03" placeholder="City" required>
+                  <div class="invalid-feedback">
+                    {{errors.city}}
+                  </div>
+                </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="exampleFormControlTextarea1" class="text-danger">Text</label>
+                <textarea name="text"class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+          
+              <button class="btn btn-primary" type="submit">Submit form</button>
+          </form>
+        </div>
+      </div>
+   
+{% endblock %}

@@ -1,0 +1,795 @@
+@font-face {
+    font-family: 'supermario';
+
+    src : url('../fonts/SuperMario256.ttf');
+}
+@font-face {
+    font-family: 'pokemon';
+
+    src : url('fonts/Pokemon_Solid.ttf');
+
+}
+
+body{
+    font-family: 'Bitter', serif;
+    background-color: #f5f4f6;
+
+}
+#header
+{
+    background-color: #fb2812;
+    box-shadow: inset 1px 1px 10px white;
+}
+
+/* NAV BAR JONATHAN */
+.yellow {
+    color: #FCC802!important;
+    font-size: 2rem;
+    font-family: "supermario";
+    text-shadow: 1px 1px 1px black;
+}
+.yellow:hover{
+    font-size:2.02rem;
+    transition: 400ms;
+    border-bottom: 40px solid #FCC802;
+    border-radius: 10px;
+}
+
+.yellow-footer{
+    color: #FCC802!important;
+    font-size: 2rem;
+    font-family: "supermario";
+    text-shadow: 1px 1px 1px black;
+}
+
+.name {
+    color: #FCC802!important;
+    font-size:3rem;
+    font-family: "supermario";
+    text-shadow: 2px 2px 2px black;
+    letter-spacing: .2em;
+}
+
+.name:hover{
+    text-shadow: 3px 3px 3px black;
+    font-size:3.01rem;
+    transition: 300ms;
+}
+
+.navbar {
+    background-color:#FB2812 !important;
+    box-shadow: inset 1px 1px 10px white;
+    border-bottom: 5px solid gold;
+}
+
+#links {
+    width: 100% !important;
+}
+
+.grandeur {
+
+    font-size: 250%;
+    padding:50px;
+    float: right;
+}
+.img-fluid{
+    width: 100%;
+}
+.imgGame {
+    height: 300px;
+    width: 100%;
+    border-radius: 20px;
+    object-fit: fill;
+
+}
+
+.main-logo{
+    height: 5em;
+    margin-bottom: 1.5em;
+}
+
+.icons:hover{
+    stroke:  white;
+    transition: 300ms;
+    padding: 2px;
+}
+
+
+/* FIN NAVBAR JONATHAN */
+
+/* Affichage Bouton panier et Verrou */
+
+li a {
+
+    color: black;
+}
+
+li a:hover {
+    text-decoration: none;
+    color: #FCC802;
+}
+
+
+#header h1
+{
+    font-family: 'supermario';
+    color : #FCC802;
+    font-size: 5rem;
+    letter-spacing: 0.6rem;
+    text-shadow: 1px 1px 1px  #FCC802;
+    padding: 1%;
+    margin : 0 auto;
+}
+
+
+#contenu
+{
+    margin-top: 20px;
+}
+
+#titre_console h1
+{
+    font-size: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.instructions{
+    color: #FB2812;
+    font-style: italic;
+}
+
+.sidebar{
+    background-color: #FB2812;
+    margin-top:-1.1%;
+    box-shadow: inset 1px 1px 10px white;
+}
+.sidebar a{
+    color : #FCC802;
+    font-family: 'Bitter', serif;
+    letter-spacing: 0.2rem;
+    font-size: 1.5em;
+    padding-top: 5rem;
+    text-shadow: 1px 1px 1px  #FCC802;
+    margin : 0.5rem;
+}
+
+.sidebar li :hover{
+    background-color: #FB2812;
+
+}
+/* CARD DISPLAY CSS */
+
+.admin-game-card-overall{
+    height: 18rem;
+}
+
+.admin-card-game{
+    object-fit: fill;
+}
+
+
+.img-responsive{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 10px;
+}
+
+.cardGame{
+    background-color: white;
+    height: 18rem;
+    border-radius: 15px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(255, 0, 0, 0.4);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(255, 0, 0, 0.4);
+    box-shadow: 3px 3px 5px 0px rgba(255, 0, 0, 0.4);
+    color: black;
+}
+
+.cardNews-page{
+
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(251,40,18,0.4);
+    box-shadow: 3px 3px 5px 0px rgba(251,40,18,0.4);
+}
+.cardGame-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease;
+}
+.cardGameList {
+
+    border-radius: 20px;
+    height: 350px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+    box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+
+}
+.cardGameText {
+    height: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+.cardGame-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease;
+}
+
+
+.bouton-game{
+    margin-top : 10px;
+
+}
+/* CARD GAME */
+.cardGame-option{
+
+    font-family: 'Bitter', serif;
+    font-size: 1em;
+    font-weight: bold;
+}
+.cardGame-img{
+    height: 10rem;
+    border: 2px solid gold;
+}
+
+.cardGame:hover .cardGame-img{
+    transition: 800ms;
+    opacity: 0.2;
+}
+
+.cardGame:hover .more-info{
+    opacity: 1;
+    color:red;
+}
+
+/* CARD DISPLAY CSS */
+.game_cat{
+    padding-top: 7%;
+}
+
+/* BUTTON STYLE POUR TS LES BTN PRIMARY */
+.btn-primary{
+    background-color: #FB2812;
+    box-shadow: inset 1px 1px 1px white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'bitter', sans-serif;
+}
+.btn-primary:hover{
+    background-color: #FCC802;
+    transition: 300ms;
+    font-size: 1.5em;
+    color: #FB2812;
+}
+.adminButton{
+    background-color: #FB2812;
+    box-shadow: inset 1px 1px 1px white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'bitter', sans-serif;
+    color: #FCC802;
+    float: right;
+}
+.adminButton:hover{
+    background-color: #FCC802;
+    transition: 300ms;
+    color: #FB2812;
+}
+
+.signUpButton{
+    background-color: rgb(8, 236, 19);
+    box-shadow: inset 1px 1px 1px white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'bitter', sans-serif;
+    color: rgb(17, 17, 16);
+
+}
+
+.signUpButton:hover{
+    background-color: #FCC802;
+    transition: 300ms;
+    font-size: 1.5em;
+    color: #FB2812;
+}
+.btn-primary-caption{
+    background-color: #FB2812;
+    box-shadow: inset 1px 1px 1px white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'bitter', sans-serif;
+    color: #FCC802;
+    padding: 2%;
+}
+
+.btn-primary-caption:hover{
+    background-color: #FCC802;
+    transition: 300ms;
+    font-size: 1.2em;
+    color: #FB2812;
+    box-shadow: inset 2px 2px 5px white;
+}
+/* BOUTONS GAME */
+
+.more-info-home{
+    background-color: #FB2812;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:white;
+    font-weight: bold;
+    box-shadow: inset 1px 1px 1px white;
+    transform: translateY(-10em);
+    z-index: -1;
+    transition : 500ms;
+}
+.cardGame:hover .more-info-home {
+    z-index: 1;
+    transform: translateY(-10em);
+}
+.more-info-home:hover{
+    color:#FCC802;
+    font-size: 1.2em;
+    box-shadow: inset 2px 2px 5px white;
+
+}
+
+.more-info-disabled{
+    background-color: lightgray;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:white;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+    transform: translateY(-15em);
+    z-index: -1;
+    transition : 500ms;
+}
+.cardGame:hover .more-info-disabled {
+    z-index: 1;
+    transform: translateY(-10em);
+}
+.more-info-test{
+    background-color: #FCC802;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:#FB2812;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+    transform: translateY(-10em);
+    z-index: -1;
+    transition : 500ms;
+}
+.more-info-test2 {
+    background-color: #FCC802;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:#FB2812;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+}
+.more-info-test2:hover{
+    background-color: #FB2812;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:#FCC802;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+}
+
+.more-info-test3 {
+    background-color: #FB2812;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:#FCC802;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+}
+.more-info-test3:hover{
+    background-color: #FCC802;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:#FB2812;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+}
+
+.cardGame:hover .more-info-test {
+    z-index: 1;
+    transform: translateY(-10em);
+}
+.more-info-test:hover{
+    background-color: #FB2812;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:#FCC802;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+    transform: translateY(-15em);
+}
+
+.more-info-test-disabled{
+    background-color: lightgray;
+    padding: 2%;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color:white;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+    transform: translateY(-10em);
+    z-index: -1;
+    transition : 500ms;
+}
+
+.cardGame:hover .more-info-test-disabled {
+    z-index: 1;
+    transform: translateY(-10em);
+}
+
+.more-info-home-main{
+    background-color: #FB2812;
+    padding: 4%;
+    border-radius: 8px;
+    font-size: 1.5em;
+    color:#FCC802;
+    font-weight: bold;
+    box-shadow: inset 2px 2px 5px white;
+    width: 15em;
+}
+.more-info-home-main:hover{
+    background-color: #FCC802;
+    padding: 4%;
+    border-radius: 8px;
+    font-size: 1.7em;
+    color:#FB2812;
+    font-weight: bold;
+    transition: 300ms;
+    box-shadow: inset 2px 2px 5px white;
+}
+
+/* ADMIN VIDEO GAME */
+.card :hover{
+    fill: #00A5E3 ;
+}
+
+.modal-body{
+    overflow: hidden;
+}
+
+.modal-body p {
+    word-wrap: break-word;
+}
+
+.admin-card-title{
+    white-space: nowrap;
+    text-align: center;
+}
+
+.titre_page_second{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 80px;
+}
+
+
+/* CARD EVENTS */
+
+
+.newsBlocEvent {
+    height: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+}
+.line-clampEvent {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+
+}
+
+.modalEvent h5
+{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.modal-body_Event
+{
+    font-size: 30px;
+}
+
+.modal_Date_Event, .modal_City_Event
+{
+    font-weight: bold;
+}
+
+
+/* END ADMIN VIDEO GAME */
+
+/* CART AND PAYMENT PROCESS */
+.breadcrumb-item, .breadcrumb-item a {
+    font-family: 'Bitter', sans-serif;
+    color: #FCC802;
+}
+
+.gameCard {
+    background-color: white;
+    height: 22rem;
+    border-radius: 15px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+    box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+    color: black;
+
+}
+
+.newsCard {
+    background-color: white;
+    height: 13rem;
+    border-radius: 15px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(255, 0, 0, 0.4);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(255, 0, 0, 0.4);
+    box-shadow: 3px 3px 5px 0px rgba(255, 0, 0, 0.4);
+    color: black;
+
+}
+.btn-outline-dark{
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);
+}
+
+/*.newsCard2 {
+    background-color: #FCC802;
+    height: 15rem;
+    border-radius: 15px;
+    box-shadow: inset 1px 1px 4px 2px white;
+}
+.newsCard3 {
+    background-color: #34D125 ;
+    height: 15rem;
+    border-radius: 15px;
+    box-shadow: inset 1px 1px 4px 2px white;
+    color: white;*/
+
+.btn-outline-dark
+{
+    display: block;
+    margin : auto;
+    font-size: 25px;
+    background-color: white;
+    border-radius: 15px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+    box-shadow: 3px 3px 5px 0px rgba(255,0,0,0.4);
+
+}
+
+.newsImage {
+    max-height: 10rem;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.newsBloc {
+    height: 4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* HOMEPAGE */
+.carousel-item{
+    height: 35em;
+}
+
+.img-carousel{
+    max-height: 100%;
+}
+
+.carousel-caption{
+    color: #FCC802;
+    font-size: 2em;
+    width: 20%;
+    top: 35%;
+    text-shadow: #00A5E3;
+}
+
+.carousel-caption h5{
+    font-family: 'pokemon';
+    font-size: 3em;
+}
+
+h1{
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+    padding-bottom: 3%;
+    margin-top: 3%;
+    color : #FB2812;
+}
+
+.home-card-title{
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 1px black;
+    white-space: nowrap;
+}
+
+#footer{
+    background-color: #FB2812;
+    min-width: 100%;
+    box-shadow: inset 1px 1px 10px white;
+    min-height: 110%;
+    border-top: 5px solid gold;
+}
+.listed-items{
+    color: white;
+    font-family: 'bitter', sans-serif;
+}
+
+.list-unstyled {
+    padding:0;
+    margin:0;
+    list-style-type:none;
+
+}
+.listed-items {
+    margin-left:2px;
+    float:left; /*pour IE*/
+}
+.list-unstyled li a {
+    display:block;
+    float:left;
+    width:100px;
+    margin-top: 5%;
+    ont-family: 'Bitter', sans-serif;
+    color: #FCC802;
+
+}
+
+
+/* PURCHASE SECTIONS */
+.breadcrumb-item{
+    padding: 1em;
+    font-family: 'bitter', sans-serif;
+    font-weight: bold;
+}
+
+.active-purchase{
+    background-color: #FB2812;
+    border-radius: 5px;
+    padding: 1em;
+    color: #FCC802;
+}
+
+.active a{
+    color: #FCC802;
+    padding: 0.1em;
+}
+.btnGame {
+    bottom: 10px;
+    bottom: 10px;
+}
+
+.mypage
+{
+
+    margin-bottom: 10px;
+
+}
+#mc_embed_signup .button {
+    background-color:red;
+    display: flex;
+}
+
+#mc_embed_signup {
+    clear:left;
+    font:14px Helvetica,Arial,sans-serif;
+}
+#mc_embed_signup .button:hover {
+    background-color: blue;
+}
+
+#bgvid {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+#login {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+}
+
+.JDdiv{
+    font-family: 'supermario';
+    padding-top: 5%;
+    display: block;
+    align-content: center;
+    opacity: 0.7;
+    border-radius: 20em;
+    margin-bottom: 10%;
+
+}
+.JDdiv:hover{
+    opacity: 1;
+}
+
+.jedi{
+    padding: 3%;
+}
+.jediSign{
+    display: flex;
+    justify-content: center;
+}
+
+.JDForm{
+    margin-top: 3%;
+
+}
+
+.JDBtn{
+    display: flex;
+    align-content: center;
+}
+
+
+.profil_img
+{
+    height: 80px;
+    width: 80px;
+}
+
+.profil_user
+{
+    margin-bottom: 20px;
+}
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: red; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+
+

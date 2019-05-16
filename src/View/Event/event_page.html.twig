@@ -1,0 +1,33 @@
+{% extends 'layout_second.html.twig' %}
+{% set headtitle = 'Events' %}
+{% set titre = 'Events' %}
+
+
+{% block content %}
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+
+            {% for event in event %}
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="cardEvent" style="height: 97%; margin-bottom: 20px; border-style: solid; border-radius: 50px; ">
+                        <img src="{{ event.photo }}" class="card-img-top" style="max-height: 200px; border-top-left-radius: 50px; border-top-right-radius: 50px; " alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.titre }}</h5>
+                            <p class="card-text">Date : {{ event.date }}</p>
+                            <p class="card-text">Date : {{ event.city }}</p>
+                            <p class="card-text">Date : {{ event.description | raw}}</p>
+                        </div>
+
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
+

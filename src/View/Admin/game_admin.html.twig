@@ -1,0 +1,240 @@
+{% extends 'Admin/layout_admin.html.twig' %}
+
+
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <!-- DISPLAY ERRORS ON FORM POSTING -->
+            {% for error in errors %}
+                {{ error }}
+
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-12 ml-4">
+            <a href="displayForm" style="color:#00A5E3;">update</a>
+        </div>
+
+        <div class="col-4 ml-4">
+            <p>Current top game is :</p><p> <strong>{{ topGame.name }}</strong> </p>
+        </div>
+
+        <div class="col-4">
+            <label>Change to : </label>
+            <select>
+                <option value="0" disabled>Please Select</option>
+                {% for line in data %}
+
+                    <option>{{ line.name }}</option>
+                {%  endfor %}
+            </select>
+        </div>
+        <!-- FORM TO ADD A GAME BELOW -->
+    </div>
+    <div class="row mb-4">
+
+        <div class="col-6">
+
+            <form method="post" enctype="multipart/form-data">
+
+                <div class="form-row">
+
+                    <div class="col-5 mb-3 mr-4">
+                        <label for="game_name">Game Title :</label>
+                        <input type="text" class="form-control" id="game_name" name="game_name" placeholder="Game Title" >
+                        <div class="instructions">
+                            45 characters max.
+                        </div>
+                    </div>
+
+
+                    <div class="col-3 mb-3 mr-4">
+                        <label for="game_price">Price :</label>
+                        <input type="number" step="0.1" class="form-control " id="game_price" name="game_price" placeholder="Price">
+                        <div class="instructions">
+                            Up to EUR 100.
+                        </div>
+                    </div>
+
+                    <div class="col-3 mb-3">
+                        <label for="category">Category of the Game :</label><br>
+                        <select id="category" name="category" required>
+                            <option name="category" value="" selected disabled> Please select </option>
+                            <option name="category" value="1">Pokemon Game</option>
+                            <option name="category" value="2">Other Game</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <!-- TEXT DESCRIPTION, WORKS WITH WYSIWYG HTML EDITOR https://www.froala.com/wysiwyg-editor/docs/overview -->
+                <div class="form-row">
+
+                    <div class="col-md-12 mb-3">
+                        <p><label for="game_description">Description :</label></p>
+                        <textarea class="form-control" name="game_description" cols="40" rows="10"></textarea>
+                        <div class="instructions">
+                            Enter the description above. Size MUST be between 50 and 500 characters.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-row justify-content-center">
+
+                    <div class="col-12">
+                        <p>Please add 3 pictures :</p>
+                    </div>
+
+                    <div class="col-8">
+                        <div class="file-loading">
+                            <input id="picture" name="picture[]" type="file" multiple="multiple" class="file"  data-theme="fas">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mt-4">
+                    <button class="btn btn-primary col-12" type="submit">Add Game</button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="view-group col-12 col-md-6">
+
+
+                    <h3 class="game_cat">Games : </h3>
+
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+
+                    <th scope="col">Title</th>
+
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for line in data %}
+                    <tr>
+                        <td>{{ line.name }}</td>
+
+
+
+                        <td> <p><a role="button" data-toggle="modal" href="#example{{ line.id }}" style="color:#00A5E3;">Modifier</a></p>
+
+                            <a href="deleteGame/{{ line.id }}" style="color:#FB2812;">Supprimer</a></td>
+                    </tr>
+
+
+                    <div class="modal fade" id="example{{ line.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ line.name }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form method="post" action="modifyGamePic/{{ line.id }}" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <img class="img-responsive admin-card-game" src="../{{ line.photo1 }}" alt="Card image cap" style="height: 10rem;">
+                                                <img class="img-responsive admin-card-game" src="../{{ line.photo2 }}" alt="Card image cap" style="height: 10rem;">
+                                                <img class="img-responsive admin-card-game" src="../{{ line.photo3 }}" alt="Card image cap" style="height: 10rem;">
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="file-loading ">
+                                                    <input id="picture" name="picture[]" type="file" multiple="multiple" class="file"  data-theme="fas">
+                                                </div>
+                                                <button class=" btn btn-primary col-12 mt-2" type="submit">UPDATE PICTURES</button>
+                                            </div>
+                                        </div>
+                                </form>
+                                <hr>
+                                <form action="modifyGameText/{{ line.id }}" method="post">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <textarea class="fr-view" name="game_description"> {{ line.description | raw}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-5 mb-3 mr-4">
+                                            <label for="game_name">Game Title :</label>
+                                            <input type="text" class="form-control" id="game_name" name="game_name" placeholder="Game Title" value="{{ line.name }}">
+                                            <div class="instructions">
+                                                45 characters max.
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-2 mb-3 mr-4">
+                                            <label for="game_price">Price :</label>
+                                            <input type="number" step="0.1" class="form-control " id="game_price" name="game_price" placeholder="Price" value="{{ line.prix }}">
+                                            <div class="instructions">
+                                                Up to EUR 100.
+                                            </div>
+                                        </div>
+
+                                        <div class="col-3 mb-3">
+                                            <label for="category">Category of the Game</label><br>
+                                            <p>Current : {{ line.name }}</p>
+                                            <select id="category" name="category" required>
+                                                <option name="category" value="" selected disabled> Please select </option>
+                                                <option name="category" value="1">Pokemon Game</option>
+                                                <option name="category" value="2">Other Game</option>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-3 mb-3 pl-3">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-danger">Delete Game</button>
+                                        <button type="submit" class="btn btn-primary">Modify Game sheet</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+    </div>
+
+
+    </div>
+    </div>
+    </div>
+    <script>$(function() {
+            $('textarea').froalaEditor()
+        });</script>
+{% endblock %}

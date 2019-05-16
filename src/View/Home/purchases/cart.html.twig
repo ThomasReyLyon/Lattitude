@@ -1,0 +1,72 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active-purchase" aria-current="page"><a href="#">Cart</a></li>
+                <li class="breadcrumb-item"><a href="/purchase/login">Login</a></li>
+                <li class="breadcrumb-item">Payment</li>
+                <li class="breadcrumb-item">confirmation</li>
+            </ol>
+        </nav>
+
+        <h1>Cart</h1>
+        {{ item.name }}
+        <div class="row justify-content-start mb-4">
+            <div class="col-12 col-md-6 offset-md-1">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Game(s)</th>
+                        <th scope="col">price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in GamesInCart  %}
+                    <tr>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{ item.prix }} EUR</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>Total Cost:{{ totalPrice }} EUR</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="/Purchase/login"><button type="button" class="btn btn-primary btn-lg mb-4">Go on to Login</button></a>
+            </div>
+
+            <div class="col-12 col-md-3 offset-md-2">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-cart-arrow-down grandeur"></i></h5>
+                        <p class="card-text">Your cart contains: </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for item in GamesInCart %}
+                        <li class="list-group-item">{{ item.name }}<i class="fas fa-minus-circle" style="float:right; color: red;"></i></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Get more Games</a>
+                        <a href="/Home/deconnectFromCart" class="card-link">Empty Cart</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="col-3 offset-6">
+
+
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

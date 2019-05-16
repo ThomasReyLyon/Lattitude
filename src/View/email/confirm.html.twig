@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/assets/css/bootstrap.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+</head>
+
+<body>
+
+    <h1>
+        Order Confirmed!
+    </h1>
+
+
+<p>We are pleased to confirm your order for the following game(s) : </p>
+
+    <div class="row justify-content-start">
+        <div class="col-6 offset-1">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Game(s)</th>
+                    <th scope="col">SteamKey</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for game in purchasedGames.article  %}
+                    <tr>
+                        <th scope="row">{{ game }}</th>
+                        <td>{{ purchasedGames.key[loop.index-1] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card col-3 offset-1">
+            <div class="card-header">
+                <p>Download your game</p>
+            </div>
+            <div class="card-body">
+                <p>Go to your steam page : </p>
+                <a href="https://store.steampowered.com"><i class="fab fa-steam"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <p>Amount charged : {{ total }} EUR</p>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

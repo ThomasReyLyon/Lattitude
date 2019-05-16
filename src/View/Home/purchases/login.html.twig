@@ -1,0 +1,91 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item " aria-current="page"><a href="/purchase/cart">Cart</a></li>
+			<li class="breadcrumb-item active-purchase"><a href="#">Login</a></li>
+			<li class="breadcrumb-item">Payment</li>
+			<li class="breadcrumb-item">confirmation</li>
+		</ol>
+	</nav>
+
+	<h1>Cart</h1>
+
+	{%  if sessionEmail is not empty %}
+		<div class="row justify-content-center mb-4">
+		<div class="col-12 col-md-6 offset-md-1 mb-4">
+		<p>You are logged under  the following account: {{ sessionEmail }} </p>
+
+		<p>Want to switch to another account? Please click <a href="/Home/deconnectFromLogin">here</a></p>
+		<a href="/purchase/payment"><button class="btn btn-primary btn-lg mb-4">Proceed to payment</button></a>
+		</div>
+		</div>
+	{% endif %}
+	{% if sessionEmail is empty %}
+
+		<div class="row justify-content-center mb-4">
+			<div class="col-12 col-md-6 offset-md-1 mb-4">
+				<h2>Sign Up to Level Up!</h2>
+				<form method="post">
+					<div class="form-group col-12 col-md-4">
+						<label for="exampleInputEmail1">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					</div>
+					<div class="form-group col-12 col-md-4">
+						<label for="exampleInputPassword1">Password</label>
+						<input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+					</div>
+					<div class="form-group form-check">
+						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+						<label class="form-check-label" for="exampleCheck1">Check me out</label>
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg">sign in and proceed to payment</button>
+				</form>
+			</div>
+
+
+
+
+
+		<div class="col-12 col-md-3 offset-md-2">
+
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title"><i class="fas fa-cart-arrow-down grandeur"></i></h5>
+					<p class="card-text">Your cart contains: </p>
+				</div>
+				<ul class="list-group list-group-flush">
+					{% for item in GamesInCart %}
+						<li class="list-group-item">{{ item.name }}<i class="fas fa-minus-circle" style="float:right; color: red;"></i></li>
+					{% endfor %}
+				</ul>
+				<div class="card-body">
+					<a href="#" class="card-link">Get more Games</a>
+					<a href="/Home/deconnectFromCart" class="card-link">Empty Cart</a>
+				</div>
+			</div>
+
+		</div>
+		</div>
+		<div class="row mb-4">
+			<div class="col-12 col-md-6 offset-md-1">
+		<p>Not signed up yet? Do it now!</p> <a href="/User/ShowForm">Sign up</a>
+			</div>
+			</div>
+	{% endif %}
+
+
+	{{ sucess }}
+
+
+
+
+
+
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

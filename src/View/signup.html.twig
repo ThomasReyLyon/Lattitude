@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+ {% block content %}
+<form method="POST">
+	<div class="container JDdiv">
+	<h2 class="JDTitle">Register</h2>
+	<div class="form-row JDForm">
+		<div class="form-group col-md-6 col-md-offset-8">
+			<label for="firstname">Firstname</label>
+			<input type="text" class="form-control" id="firstname1" name="firstname" placeholder="Your firstname">
+      {{ error.firstname }}
+		</div>
+
+
+		<div class="form-group col-md-6 col-md-offset-8">
+			<label for="lastname">Lastname</label>
+			<input type="text" class="form-control" id="lastname1" name="lastname" placeholder="Your lastname">
+      {{ error.lastname }}
+		</div>
+  </div>
+  <br />
+  <div class="form-row JDForm">
+		<div class="form-group col-md-6 col-md-offset-8">
+			<label for="email">Email</label>
+			<input type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email">
+      {{ error.email }}
+		</div>
+		
+		
+		<div class="form-group col-md-6 col-md-offset-8">
+			<label for="inputPassword4">Password</label>
+			<input type="password" class="form-control" id="inputPassword4" name="password" placeholder="Password">
+      {{ error.password }}
+		</div>
+	</div>
+<br />
+	<button type="submit" class="btn btn-primary">Sign in</button>
+	{{ sucess }}
+</form>
+   </div>
+{% endblock %}
+
+

@@ -1,0 +1,14 @@
+.table-hover {
+    color: red;
+    background-color: red;
+}
+.table {
+    color: red;
+    border-color: red;
+}
+.border {
+    color:red;
+}
+.table-bordered {
+    color:red;
+}

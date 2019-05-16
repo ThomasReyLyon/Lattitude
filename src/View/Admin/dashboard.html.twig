@@ -1,0 +1,188 @@
+{% extends 'Admin/layout_admin.html.twig' %}
+{% block title %} Dashboard {% endblock %}
+{% block content %}
+    <head>
+        <!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <script type="text/javascript">
+
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages':['corechart']});
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart);
+
+            // Callback that creates and populates a data table,
+            // instantiates the pie chart, passes in the data and
+            // draws it.
+            function drawChart() {
+
+                // Create the data table.
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Game');
+                data.addColumn('number', 'Sales');
+                data.addRows([
+                    {% for game in sales%}
+                    ['{{ game.name }}', {{ game.nbr_sales }}],
+                    {% endfor %}
+                ]);
+
+                // Set chart options
+                var options = {'title':'Sales distribution - 2019',
+                    'width':800,
+                    'height':500};
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+                chart.draw(data, options);
+            }
+
+
+
+
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawBasic);
+
+            function drawBasic() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['Game', '2019 units sold',],
+                    {% for game in sales%}
+                    ['{{ game.name }}', {{ game.nbr_sales }}],
+                    {% endfor %}
+                ]);
+
+                var options = {
+                    title: 'Sales by game / 2019',
+                    'width': 800,
+                    'height':500,
+                    chartArea: {width: '50%'},
+                    hAxis: {
+                        title: 'Total sales 2019',
+                        minValue: 0
+                    },
+                    vAxis: {
+                        title: 'Games'
+                    }
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('sales_by_Game'));
+
+                chart.draw(data, options);
+            }
+
+
+        </script>
+
+    </head>
+
+
+    <div class="container-fluid">
+        <!--Div that will hold the pie chart-->
+        <a href="/Home/deconnect"><input type="button" class="btn adminButton" value="Déconnexion"></a>
+
+
+        <div class="row justify-content-start my-4">
+            <div class="col-6 m-4">
+                <h2>Data and charts</h2>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#salesdist" role="tab" aria-controls="salesdist" aria-selected="true">Sales distribution</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="settings-tab" data-toggle="tab" href="#byGame" role="tab" aria-controls="byGame" aria-selected="false">Sales by game</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="salesdist" role="tabpanel" aria-labelledby="salesdist">
+                        <div id="pieChart"></div>
+                    </div>
+
+                    <div class="tab-pane" id="byGame" role="tabpanel" aria-labelledby="byGame"><div id="sales_by_Game"></div></div>
+                </div>
+            </div>
+            <div class="col-5 m-4 border-left">
+                <h2>Turnovers and sales figures</h2>
+
+                <h4>Revenues per Game</h4>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Game</th>
+                        <th scope="col">Price per Unit</th>
+                        <th scope="col">Units sold</th>
+                        <th scope="col">Revenues</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for game in sales%}
+                        <tr>
+                            <th scope="row">{{ game.name }}</th>
+                            <td>{{ game.price }} EUR</td>
+                            <td>{{ game.nbr_sales }}</td>
+                            <td>{{ game.nbr_sales * game.price }} EUR</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+            <div class="col-12">
+                <h2>Latest orders</h2>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Orders Nr.</th>
+                        <th scope="col">Orders Date</th>
+                        <th scope="col">Amounts Charged</th>
+                        <th scope="col">Users</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in allOrders%}
+                        <tr>
+                            <th scope="row">{{ order.id }}</th>
+                            <th>{{ order.date_order }}</th>
+                            <td>{{ order.amount }} EUR</td>
+                            <td>{{ order.email }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    <a href="/Admin/index/" class="text-black">0 </a>
+                    {%  for order in ordersCount %}
+                        {% if loop.index%10 == 0 %}
+                            <a href="/Admin/index/{{ loop.index/10 }}" class="text-black"> - {{ loop.index/10 }}  </a>
+                        {% endif %}
+                        <!--
+                   {{ indexPage }}"> - </a>
+                    <a href="/Admin/index/1">{{ indexPage +1 }} - </a>
+                    -->
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+
+        </div>
+        <script>
+            $(function () {
+                $('#myTab li:last-child a').tab('show')
+            })
+        </script>
+
+
+    </div>
+{% endblock %}

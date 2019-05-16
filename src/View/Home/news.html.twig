@@ -1,0 +1,27 @@
+{% extends 'layout_second.html.twig' %}
+{% set headtitle = 'News' %}
+{% set titre = 'News' %}
+
+{%  block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+
+            {% for new in news %}
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="cardEvent" style="height: 97%; margin-bottom: 20px; border-style: solid; border-radius: 50px; ">
+                        <img src="{{ new.image }}" class="card-img-top" style="max-height: 200px; border-top-left-radius: 50px; border-top-right-radius: 50px; " alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ new.titre }}</h5>
+                            <p class="card-text">Date : {{ new.date | date("m/d/Y") }}</p>
+                            <p class="card-text">Date : {{ new.description |raw }}</p>
+                        </div>
+
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

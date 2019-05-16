@@ -1,0 +1,94 @@
+{% extends 'layout_second.html.twig' %}
+{% set headtitle = 'User Page' %}
+{% set titre = 'My Page' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="row profil_user">
+
+        <div class="mypage col-lg-12 ">
+
+            <h1><img class="profil_img" src="/assets/images/user_profil/avatar1_logo.png"/>My profile :</h1>
+            <a href="/Home/deconnect"><input type="button" class="btn adminButton m-4" value="Déconnexion"></a>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Lastname</th>
+                    <th>Firstname</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+</div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+        <div class="mypage col-lg-6 col-xs-12">
+            <h1><img class="profil_img" src="/assets/images/user_profil/orders_logo.png"/>      My orders :</h1>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Order number</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for orders in listorder %}
+                <tr>
+
+                    <td>{{ orders.id }}</td>
+                    <td>{{ orders.date_order |date("d/m/Y") }}</td>
+                    <td>{{ orders.amount }} €</td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+            <div class="mypage col-lg-6 col-xs-12">
+                <h1><img class="profil_img" src="/assets/images/user_profil/steam_logo.png"/>      My Steam Keys :</h1>
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Order number</th>
+                        <th>Game</th>
+                        <th>Steam Key</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for key in listkey %}
+                        <tr>
+
+                            <td>{{ key.fk_orders_id }}</td>
+                            <td>{{ key.name }}</td>
+                            <td>{{ key.steam_key}}</td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{%  extends 'layout.html.twig' %}
+
+{%  block content %}
+<br/>
+<h1 class="text-center">Our Games</h1>
+    <br/>
+<div class="container-fluid">
+    <div class="row">
+{% for game in games %}
+
+        <div class="col-lg-6">
+            <div class="container">
+            <div class="card cardGameList mb-5 p-3">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="imgGame" src="../{{ game.photo1 }}" alt="Card image cap">
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="card-body text-center">
+                            <div class="">
+                            <h3 class="card-title ">{{ game.name }}</h3>
+                            </div>
+                            <div class="cardGameText mb-3">
+                                <p class="card-text">{{ game.description | raw}}</p>
+                            </div>
+                            <a href="../VideoGame/show/{{ game.id }}" class="btn btn-primary pull-right btnCard">Read
+                                More</a>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            </div>
+        </div>
+{% endfor %}
+    </div>
+</div>
+{% endblock %}

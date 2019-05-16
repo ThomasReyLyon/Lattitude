@@ -1,0 +1,117 @@
+{% extends 'Admin/layout_admin.html.twig' %}
+{% set headtitle = 'Admin - Events' %}
+{% set titre = 'Events' %}
+
+
+{% block content %}
+
+    <div class="container-fluid" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+        <div id="contenu" class="row">
+
+            <div class="col-lg-6">
+
+                <div class="container">
+                    <form class="form-group" method="post" enctype="multipart/form-data">
+                        <h2>Add an new event</h2>
+
+                        <div class="form-group">
+                            <br/>
+                            <label for="titre">Event's name</label>
+                            <input type="text" class="form-control" id="titre" placeholder="Please save a text" name="titre" value="{{ event.titre }}" required>
+                            <!-- alerte si champ vide (voir fichier valid_form.php -->
+                            <span class="error" style="color: red"><?php echo $inputtextError;?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <br/>
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="date" name="date" value="{{ event.date }}" required>
+                            <!-- alerte si champ vide (voir fichier valid_form.php -->
+                            <span class="error" style="color: red"><?php echo $inputtextError;?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <br/>
+                            <label for="city">Place (city)</label>
+                            <input type="text" class="form-control" id="city" placeholder="Please save a city" name="city" value="{{ event.city }}" required>
+                            <!-- alerte si champ vide (voir fichier valid_form.php -->
+                            <span class="error" style="color: red"><?php echo $inputtextError;?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <br/>
+                            <label for="description">Description</label>
+                            <textarea class="form-control"  id="description" placeholder="Please save a description" rows="5" required name="description">{{ event.description | raw}}</textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <label class= control-label" for="photo">Photo</label>
+                            <div class="col-md-6 offset-md-4">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                                <input type="file" id="image" name="image" multiple="multiple" class="input-file form-control-file pt-1 file_button">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <br/>
+
+                            <input type="submit" name="submit" value="Valider">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6">
+
+                <div class="container">
+                    <div class="form-group">
+                        <h2>Events list</h2>
+                    <br/>
+                        <br/>
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for event in event %}
+                                <tr>
+                                    <td><img class="img-fluid" src="{{ event.photo }}" width="150px" ></td>
+                                    <td>{{ event.titre }}</td>
+                                    <td>{{ event.date }}</td>
+                                    <td>{{ event.city }}</td>
+
+
+                                    <td><class="align-middle"><a href="modifyEventText/{{ event.id }}"> Modifier</a><br/><a href="Delete/{{ event.id }}">Supprimer</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script>$(function() {
+            $('textarea').froalaEditor()
+        });</script>
+
+
+{% endblock %}

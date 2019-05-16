@@ -1,0 +1,140 @@
+{% extends 'Admin/layout_admin.html.twig' %}
+
+{% block content %}
+
+    <br/>
+    <h2>News List</h2>
+
+
+    <table class="table table-active table-hover table-bordered border border-dark">
+        <thead>
+        <tr class="bg-primary">
+            <th scope="col">Date</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Modif</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for new in news %}
+        <tr>
+            <td class="align-middle">{{ new.date|date("m/d/Y") }}</td>
+            <td class="align-middle">{{ new.titre }}</td>
+            <td class="align-middle">{{ new.description |raw }}</td>
+            <td class="align-middle"><img class="img-fluid" src="{{ new.image }}"></td>
+            <td class="align-middle">
+                <a role="button" data-toggle="modal" href="#example{{ new.id }}" style="color:#00A5E3;">Modifier</a>
+                <br/>
+                <a href="deleteNews/{{ new.id }}">Supprimer</a></td>
+        </tr>
+            <div class="modal fade" id="example{{ new.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ new.titre }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="editNews/{{ new.id }}" method="get">
+                                <fieldset>
+
+                                    <!-- Form Name -->
+                                    <legend>Add News</legend>
+                                    <br/>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="control-label" for="titre">Titre</label>
+                                        <div class="col-12">
+                                            <input id="titre" name="titre" type="text" placeholder="Titre" class="form-control" value="{{ new.titre }}">
+                                        </div>
+                                    </div>
+                                    <img class="img-responsive admin-card-game" src="../{{ new.image }}" alt="Card image cap" style="width:30%; height: 10rem;">
+                                    <!-- File Button -->
+                                    <div class="form-group">
+                                        <label class= control-label" for="image">Image</label>
+                                        <div class="col-md-12">
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                                            <input type="file" id="image" name="image" class="input-file form-control-file pt-1 file_button">
+                                        <br/>
+                                    <!-- Textarea -->
+                                    <div class="form-group">
+                                        <label class="control-label" for="description">Description</label>
+                                        <div class="col-12">
+                                            <textarea class="form-control" id="description" name="description">{{ new.description | raw }}</textarea>
+                                        </div>
+                                    </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                </fieldset>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="deleteNews/{{ new.id }}"> <button type="button" class="btn btn-danger">Delete News</button></a>
+                                    <button type="submit" class="btn btn-primary">Modify</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         {% endfor %}
+        </tbody>
+    </table>
+    <hr/>
+
+
+    <div class="col-lg-10">
+        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Add News</legend>
+                <br/>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="control-label" for="titre">Titre</label>
+                    <div class="col-12">
+                        <input id="titre" name="titre" type="text" placeholder="Titre" class="form-control">
+                        {{ errors.titre }}
+                    </div>
+                </div>
+
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="control-label" for="description">Description</label>
+                    <div class="col-12">
+                        <textarea class="form-control" name="description" id="description" cols="40" rows="10"></textarea>
+                        {{ errors.description }}
+                    </div>
+                </div>
+
+                <!-- File Button -->
+
+
+                <div class="form-group">
+
+                    <label class= control-label" for="image">Image</label>
+                    <div class="col-md-6 offset-md-4">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+                        <input type="file" id="image" name="image" class="input-file form-control-file pt-1 file_button">
+                        {{ errors.image }}
+                    </div>
+                </div>
+                <br/>
+            <div>
+            <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+            </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <script>$(function() {
+            $('textarea').froalaEditor()
+        });</script>
+
+
+{% endblock %}

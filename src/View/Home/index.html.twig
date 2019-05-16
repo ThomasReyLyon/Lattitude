@@ -1,0 +1,285 @@
+{%  extends 'layout.html.twig' %}
+
+{%  block content %}
+    <div class="container-fluid">
+        <section class="mt-2 mb-5">
+            <div class="bd-example">
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" style="border-radius:20px;">
+                        <div class="carousel-item  active">
+                            <img src="/assets/images/games/POK2.jpg" class="d-block img-responsive w-100 img-carousel" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Pokeydex</h5>
+                                <p>Enjoy Pokemon.</p><p>Responsibly.</p>
+                                <button class="btn-primary-caption">Try it Now!</button>
+                            </div>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <img src="/assets/images/games/POK6.jpg" class="d-block img-responsive w-100 img-carousel" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/assets/images/games/POK8.jpg" class="d-block img-responsive w-100 img-carousel" alt="...">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <hr style="border: 2px solid #FB2812; border-radius: 10px; margin-left: 100px; margin-right: 100px">
+
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-end">
+            <div class="col-12 col-md-3 col-lg-6">
+                <h1>NEWEST GAMES</h1>
+            </div>
+            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                <a href="/home/games"><button class="more-info-test2 col-12 pt-2 pr-5 pb-2 pl-5">More Games</button></a>
+            </div>
+        </div>
+        <div class="row justify-content-around my-4">
+
+            {% for game in gamesData |slice(0,5) %}
+
+                <div class="card cardGame col-12 col-md-4 col-lg-2 my-4 mx-4" >
+                    <a href="../VideoGame/show/{{ game.id }}"><h6 class="home-card-title my-4">{{ game.name }}</h6></a>
+                    <a href=""><img class="img-responsive cardGame-img" src="../{{ game.photo1 }}" alt="Card image cap"></a>
+                    <div class="card-body">
+                        {% if session.email is defined %}
+                            <a href="https://wildcodeschool.github.io/lyon-0219-react-pokemaze/#/"><button class="more-info-test col-12 my-2 ">Try!</button></a>
+                        {% else %}
+
+                            <button class="more-info-test-disabled col-12 my-2" data-container="body" data-toggle="popover"
+                                    data-placement="top" data-content="You first need to login. Click on the top-right account icon!">Try!</button>
+
+                        {% endif %}
+
+
+
+                        {% if game.name in session.article %}
+                            <button class="more-info-disabled col-12 my-2 " id="{{ game.name }}" name="{{ game.name }}" value="{{ game.name }}" data-container="body" data-toggle="popover"
+                                    data-placement="top" data-content="This game is already in your cart!">
+                                add to cart!</button>
+                        {% else %}
+                            <form method="post" id="get_game" action="/purchase/cart" class="col-12">
+                                <button class="more-info-home col-12 my-2" type="submit" id="{{ game.name }}" name="{{ game
+                                .name }}"value="{{ game.name }}">
+                                    add to cart!</button></form>
+                        {% endif %}
+
+                        <div id="display{{ game.name }}"></div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <hr style="border: 2px solid #FB2812; border-radius: 10px; margin-left: 100px; margin-right: 100px; margin-top: 50px">
+
+    <div class="row no-gutters">
+        <div class="col-12 col-md-3 col-lg-5">
+            <h1>LATEST NEWS & EVENTS</h1>
+        </div>
+        <div class="col-lg-4 offset-3">
+            <div id="mc_embed_signup">
+                <form action="https://hotmail.us20.list-manage.com/subscribe/post?u=30d0cc1a4287f37cc68d6d047&amp;id=08d4f7d088" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                    <div id="mc_embed_signup_scroll">
+                        <div class="mc-field-group">
+                            <label for="mce-EMAIL">Stay tuned and receive the last news ! :
+                            </label>
+                            <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL"
+                                   placeholder="Email Adress">
+                        </div>
+                        <div id="mce-responses" class="clear">
+                            <div class="response" id="mce-error-response" style="display:none"></div>
+                            <div class="response" id="mce-success-response" style="display:none"></div>
+                        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_30d0cc1a4287f37cc68d6d047_08d4f7d088" tabindex="-1" value=""></div>
+                        <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
+                                                  id="mc-embedded-subscribe" class="button"></div>
+                    </div>
+                </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+            <!--End mc_embed_signup-->
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+            <div class="col-lg-4">
+                <h3 class="text-center">Games</h3>
+                {% for new in news |slice(0, 2) %}
+                    <section>
+                        <div class="container py-3">
+                            <div class="card newsCard p-2">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img class="newsImage d-flex align-self-center ml-2 mr-3 img-fluid w-100 mt-2" src="{{ new.image }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-block">
+                                            <h4 class="card-title text-center">{{ new.titre }}</h4>
+                                            <p class="card-text text-center">{{ new.date|date("m/d/Y") }} </p>
+
+                                            <a href="#n{{ new.id }}" style="margin: 20px;" class="btn btn-dark" id="#{{ new.id }}" data-toggle="modal">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal modalEvent" id="n{{ new.id }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">{{ new.titre }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body modal-body_Event">
+                                        <img src="{{ new.image }}" class="card-img-top" style="max-height: 500px;"
+                                             alt="...">
+                                        <p class="modal_Date_Event"><br/>Date : {{ new.date }}</p>
+                                        <p>{{ new.description | raw }}</p>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                {% endfor %}
+                <div class="moreinfo">
+                    <a href="/Home/news" style="margin: 20px;" class="btn btn-outline-dark" id="">More info</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h3 class="text-center">Studio</h3>
+                {% for new in news |slice(3, 2)  %}
+                    <section>
+                        <div class="container py-3">
+                            <div class="card newsCard p-2">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img class="newsImage d-flex align-self-center ml-2 mr-3 img-fluid w-100 mt-2" src="{{ new.image }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-block">
+                                            <h4 class="card-title text-center">{{ new.titre }}</h4>
+                                            <p class="card-text text-center">{{ new.date|date("m/d/Y") }} </p>
+
+                                            <a href="#n{{ new.id }}" style="margin: 20px;" class="btn btn-dark" id="#{{ new.id }}" data-toggle="modal">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal modalEvent" id="n{{ new.id }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document" >
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">{{ new.titre }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body modal-body_Event">
+                                        <img src="{{ new.image }}" class="card-img-top" style="max-height: 500px;" alt="...">
+                                        <p class="modal_Date_Event"><br/>Date : {{ new.date }}</p>
+                                        <p>{{ new.description | raw }}</p>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                {% endfor %}
+                <div class="moreinfo">
+                    <a href="/Home/news" style="margin: 20px;" class="btn btn-outline-dark" id="">More info</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h3 class="text-center">Events</h3>
+                {% for event in event |slice(0, 2)  %}
+                    <section>
+                        <div class="container py-3">
+                            <div class="card newsCard p-2">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img class="newsImage d-flex align-self-center ml-2 mr-3 img-fluid w-100 mt-2" src="{{ event.photo }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-block">
+                                            <h4 class="card-title text-center">{{ event.titre }}</h4>
+                                            <p class="card-text text-center">{{ event.date|date("m/d/Y") }} </p>
+
+                                            <a href="#f{{ event.id }}" style="margin: 20px;" class="btn btn-dark" id="#{{ event.id }}" data-toggle="modal">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal modalEvent" id="f{{ event.id }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">{{ event.titre }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body modal-body_Event">
+                                        <img src="{{ event.photo }}" class="card-img-top" style="max-height: 500px;" alt="...">
+                                        <p class="modal_Date_Event"><br/>Date : {{ event.date }}</p>
+                                        <p class="modal_City_Event">Place : {{ event.city }}</p>
+                                        <p>{{ event.description | raw }}</p>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                {% endfor %}
+                <div class="moreinfo">
+                    <a href="/Event/showEvent" style="margin: 20px;" class="btn btn-outline-dark" id="">More info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{%  endblock %}
+
+{% block javascript %}
+
+
+<script>
+$(function(){
+    $('.more-info-disabled').popover({
+        container: 'body'
+    })
+})
+$(function(){
+    $('.more-info-test-disabled').popover({
+        container: 'body'
+    })
+})
+</script>
+
+{% endblock %}
+
